@@ -1,0 +1,38 @@
+<!-- Phần thân của website -->
+
+<!-- Nút nhấn chạy động cơ -->
+<button id="btt_RUN_M1" onclick="socket.emit('Client-send-cmdM1', true);">
+  RUN MOTOR 1
+</button>
+<!-- Nút nhấn dừng động cơ -->
+<button id="btt_STOP_M1" onclick="socket.emit('Client-send-cmdM1', false);">
+  STOP MOTOR 1
+</button>
+
+<!-- Phần thân của website -->
+<!--Tag dạng Bool-->
+<label>Tag dạng bool:</label>
+<input id="Bool" disabled="disabled" type="text" />
+
+<br /><br />
+<!--Tag dạng Byte-->
+<label>Tag dạng byte:</label>
+<input id="Byte" disabled="disabled" type="text" />
+
+<br /><br />
+<!--Tag dạng Số nguyên-->
+<label>Tag dạng int:</label>
+<input id="Integer" disabled="disabled" type="text" />
+
+<br /><br />
+<!--Tag dạng Số thực-->
+<label>Tag dạng real:</label>
+<input id="Real" disabled="disabled" type="text" />
+
+<br /><br />
+<!--Tag dạng String-->
+<label>Tag dạng string:</label>
+<input id="String" disabled="disabled" type="text" />
+<script src="socket.io/socket.io.js"></script>
+<script></script>
+<script src="javascript/main.js"></script>

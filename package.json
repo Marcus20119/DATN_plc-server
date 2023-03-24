@@ -1,0 +1,31 @@
+{
+  "name": "02_Study_WebServer",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "https://github.com/Marcus20119/DATN_Study.git",
+  "author": "Marcus",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "dependencies": {
+    "app-root-path": "^3.1.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express-ejs-layouts": "^2.5.1",
+    "jquery": "^3.6.4",
+    "nodes7": "^0.3.18",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@types/nodes7": "^0.3.1",
+    "babel-register": "^6.26.0",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.22"
+  }
+}
