@@ -6,11 +6,11 @@ export const connectPLC = conn_plc => {
   );
 
   const tags_list = {
-    tag_Bool: 'DB1,X0.0',
-    tag_Byte: 'DB1,BYTE1',
-    tag_Integer: 'DB1,INT2',
-    tag_Real: 'DB1,REAL4',
-    tag_String: 'DB1,S8.256',
+    tagBool: 'DB1,X0.0',
+    tagByte: 'DB1,BYTE1',
+    tagInteger: 'DB1,INT2',
+    tagReal: 'DB1,REAL4',
+    tagString: 'DB1,S8.30',
   };
 
   // GỬI DỮ LIỆu TAG CHO PLC
@@ -23,11 +23,11 @@ export const connectPLC = conn_plc => {
     }); // Đưa giá trị đọc lên từ PLC và mảng
 
     conn_plc.addItems([
-      'tag_Bool',
-      'tag_Byte',
-      'tag_Integer',
-      'tag_Real',
-      'tag_String',
+      'tagBool',
+      'tagByte',
+      'tagInteger',
+      'tagReal',
+      'tagString',
     ]);
   }
 };

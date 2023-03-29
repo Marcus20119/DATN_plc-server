@@ -7,7 +7,7 @@ import { configViewEngine } from './config/viewEngine';
 import { configStaticFiles } from './config/staticFiles';
 import initWebRoutes from './routes/routes';
 import { connectPLC } from './config/connectPLC';
-import { initSocket } from './config/socket';
+import { initRealtime } from './config/realtime';
 
 const app = express();
 
@@ -27,4 +27,4 @@ server.listen(port, () => {
 // KHỞI TẠO KẾT NỐI PLC VÀ SOCKET
 const conn_plc = new nodes7();
 connectPLC(conn_plc);
-initSocket(server, conn_plc);
+initRealtime(conn_plc);
