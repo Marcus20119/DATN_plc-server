@@ -1,7 +1,7 @@
 import { onValue, ref, remove, set } from 'firebase/database';
 
 import { realTimeDb } from './firebase-config';
-
+import { isEqual } from 'lodash';
 export const initRealtime = conn_plc => {
   let write_value = null;
 
@@ -43,21 +43,31 @@ export const initRealtime = conn_plc => {
     // console.log('write_value:', write_value);
     if (write_value !== null) {
       console.log('-----------WRITE PLC-------------');
-      if (write_value.tagBool !== data.tagBool) {
-        conn_plc.writeItems('tagBool', data.tagBool, valuesWritten);
+      if (isEqual(write_value, data)) {
+        console.log('equal');
+      } else {
+        console.log('not equal');
+        conn_plc.writeItems(
+          ['tagBool', 'tagByte', 'tagInteger', 'tagReal', 'tagString'],
+          Object.values(data),
+          valuesWritten
+        );
       }
-      if (write_value.tagByte !== data.tagByte) {
-        conn_plc.writeItems('tagByte', data.tagByte, valuesWritten);
-      }
-      if (write_value.tagInteger !== data.tagInteger) {
-        conn_plc.writeItems('tagInteger', data.tagInteger, valuesWritten);
-      }
-      if (write_value.tagReal !== data.tagReal) {
-        conn_plc.writeItems('tagReal', data.tagReal, valuesWritten);
-      }
-      if (write_value.tagString !== data.tagString) {
-        conn_plc.writeItems('tagString', data.tagString, valuesWritten);
-      }
+      // if (write_value.tagBool !== data.tagBool) {
+      //   conn_plc.writeItems('tagBool', data.tagBool, valuesWritten);
+      // }
+      // if (write_value.tagByte !== data.tagByte) {
+      //   conn_plc.writeItems('tagByte', data.tagByte, valuesWritten);
+      // }
+      // if (write_value.tagInteger !== data.tagInteger) {
+      //   conn_plc.writeItems('tagInteger', data.tagInteger, valuesWritten);
+      // }
+      // if (write_value.tagReal !== data.tagReal) {
+      //   conn_plc.writeItems('tagReal', data.tagReal, valuesWritten);
+      // }
+      // if (write_value.tagString !== data.tagString) {
+      //   conn_plc.writeItems('tagString', data.tagString, valuesWritten);
+      // }
       write_value = { ...data };
     }
   });

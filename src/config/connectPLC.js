@@ -1,7 +1,7 @@
 export const connectPLC = conn_plc => {
   // Tạo địa chỉ kết nối (slot = 2 nếu là 300/400, slot = 1 nếu là 1200/1500)
   conn_plc.initiateConnection(
-    { port: 102, host: '192.168.2.13', rack: 0, slot: 1 },
+    { port: 102, host: '192.168.0.1', rack: 0, slot: 1 },
     PLC_connected
   );
 
