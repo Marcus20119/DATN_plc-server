@@ -11,17 +11,14 @@ export const initRealtime = conn_plc => {
 
   // ĐỌC DỮ LIỆU TỪ PLC VÀ ĐƯA VÀO MẢNG - MỖI GIÂY 1 LẦN
   setInterval(() => {
-    console.log('-----------READ PLC-------------');
+    console.log('-----------READ DATA FROM PLC-------------');
     conn_plc.readAllItems((error, values) => {
       if (error) {
         console.log('Error occurred when reading data: ');
       }
+      // Ban đầu ghi vào cả vùng nhớ của XLNT_WEB
       if (write_value === null) {
-        console.log('---------------------');
-        console.log('write_XLNT_WEB');
         write_value = { ...values };
-        // remove(ref(realTimeDb, 'XLNT_WEB'));
-        // remove(ref(realTimeDb, 'XLNT_WEB'));
         writeUserData('XLNT_WEB', values);
       }
       writeUserData('XLNT_PLC', values);
@@ -36,38 +33,22 @@ export const initRealtime = conn_plc => {
     console.log('Done writing.');
   }
 
-  // const starCountRef = ref(realTimeDb, 'XLNT_WEB');
   onValue(ref(realTimeDb, 'XLNT_WEB'), snapshot => {
     const data = snapshot.val();
-    // console.log('data:', data);
-    // console.log('write_value:', write_value);
+    // Không ghi dữ liệu khi khởi tạo lần đầu
     if (write_value !== null) {
-      console.log('-----------WRITE PLC-------------');
+      // Vì mỗi lần dữ liệu thay đổi, snapshot sẽ chạy 2 lần để so sánh, chỉ ghi dữ liệu khi bắt được dữ liệu mới
       if (isEqual(write_value, data)) {
-        console.log('equal');
+        console.log('===> DATA NOT CHANGED');
       } else {
-        console.log('not equal');
+        console.log('===> DATA CHANGED');
+        console.log('-----------WRITE DATA TO PLC-------------');
         conn_plc.writeItems(
-          ['tagBool', 'tagByte', 'tagInteger', 'tagReal', 'tagString'],
+          Object.keys(data),
           Object.values(data),
           valuesWritten
         );
       }
-      // if (write_value.tagBool !== data.tagBool) {
-      //   conn_plc.writeItems('tagBool', data.tagBool, valuesWritten);
-      // }
-      // if (write_value.tagByte !== data.tagByte) {
-      //   conn_plc.writeItems('tagByte', data.tagByte, valuesWritten);
-      // }
-      // if (write_value.tagInteger !== data.tagInteger) {
-      //   conn_plc.writeItems('tagInteger', data.tagInteger, valuesWritten);
-      // }
-      // if (write_value.tagReal !== data.tagReal) {
-      //   conn_plc.writeItems('tagReal', data.tagReal, valuesWritten);
-      // }
-      // if (write_value.tagString !== data.tagString) {
-      //   conn_plc.writeItems('tagString', data.tagString, valuesWritten);
-      // }
       write_value = { ...data };
     }
   });
