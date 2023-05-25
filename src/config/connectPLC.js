@@ -52,6 +52,7 @@ export const tags_list = {
   Status_Buoy: 'DB2,X64.6',
   Error_Pump1: 'DB2,X64.7',
   Error_Pump2: 'DB2,X65.0',
+  Error_Fan: 'DB2,X65.1',
 };
 
 export const tags_key = Object.keys(tags_list);
