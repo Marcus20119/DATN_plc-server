@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "app-root-path": "^3.1.0",
+    "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express-ejs-layouts": "^2.5.1",
     "firebase": "^9.18.0",
     "jquery": "^3.6.4",
-    "nodes7": "^0.3.18",
-    "socket.io": "^4.6.1"
+    "nodes7": "^0.3.18"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
