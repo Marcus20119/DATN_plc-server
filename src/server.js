@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 
 import { configViewEngine } from './config/viewEngine';
 import { configStaticFiles } from './config/staticFiles';
-import initWebRoutes from './routes/routes';
 import { connectPLC } from './config/connectPLC';
 import { initRealtime } from './config/realtime';
 
@@ -14,7 +13,6 @@ const app = express();
 configStaticFiles(app);
 configViewEngine(app);
 
-initWebRoutes(app);
 dotenv.config();
 let port = process.env.PORT;
 
