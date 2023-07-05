@@ -2,31 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const tags_list = {
-  // tagBool: 'DB1,X0.0',
-  // tagByte: 'DB1,BYTE1',
-  // tagInteger: 'DB1,INT2',
-  // tagReal: 'DB1,REAL4',
-  // tagString: 'DB1,S8.30',
-  // BtnOn1: 'DB16,X0.0',
-  // BtnOn2: 'DB16,X0.1',
-  // BtnOn3: 'DB16,X0.2',
-  // BtnOff: 'DB16,X0.3',
-  // AUTO: 'DB16,X0.4',
-  // MANUAL: 'DB16,X0.5',
-  // OR1: 'DB16,X0.6',
-  // OR2: 'DB16,X0.7',
-  // OR3: 'DB16,X1.0',
-  // T_run: 'DB16,INT2.2',
-  // MTK1: 'DB17,X0.0',
-  // MTK2: 'DB17,X0.1',
-  // MTK3: 'DB17,X0.2',
-  // Buzzer: 'DB17,X0.3',
-  // LampRun1: 'DB17,X0.4',
-  // LampRun2: 'DB17,X0.5',
-  // LampRun3: 'DB17,X0.6',
-  // LampError1: 'DB17,X0.7',
-  // LampError2: 'DB17,X1.0',
-  // LampError3: 'DB17,X1.1',
   T_On_Pump_Min: 'DB2,INT0.2',
   T_Off_Pump_Min: 'DB2,INT4.2',
   T_On_Fan_Min: 'DB2,INT8.2',
@@ -53,6 +28,7 @@ export const tags_list = {
   Error_Pump1: 'DB2,X64.7',
   Error_Pump2: 'DB2,X65.0',
   Error_Fan: 'DB2,X65.1',
+  Reset_Buzz: 'DB2,X65.2',
 };
 
 export const tags_key = Object.keys(tags_list);

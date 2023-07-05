@@ -60,26 +60,6 @@ export const initRealtime = conn_plc => {
     console.log('Done writing.');
   }
 
-  // onValue(ref(realTimeDb, 'XLNT_WEB'), snapshot => {
-  //   const data = snapshot.val();
-  //   // Không ghi dữ liệu khi khởi tạo lần đầu
-  //   if (write_value !== null) {
-  //     // Vì mỗi lần dữ liệu thay đổi, snapshot sẽ chạy 2 lần để so sánh, chỉ ghi dữ liệu khi bắt được dữ liệu mới
-  //     if (isEqual(write_value, data)) {
-  //       console.log('===> DATA NOT CHANGED');
-  //     } else {
-  //       console.log('===> DATA CHANGED');
-  //       console.log('-----------WRITE DATA TO PLC-------------');
-  //       conn_plc.writeItems(
-  //         Object.keys(data),
-  //         Object.values(data),
-  //         valuesWritten
-  //       );
-  //     }
-  //     write_value = { ...data };
-  //   }
-  // });
-
   const catchAndWriteSingleSignalToPLC = dataName => {
     onValue(ref(realTimeDb, `XLNT_WEB/${dataName}`), snapshot => {
       const data = snapshot.val();
@@ -127,6 +107,7 @@ export const initRealtime = conn_plc => {
   catchAndWriteSingleSignalToPLC('Reset_T_Sum_Pump1');
   catchAndWriteSingleSignalToPLC('Reset_T_Sum_Pump2');
   catchAndWriteSingleSignalToPLC('Reset_T_Sum_Fan');
+  catchAndWriteSingleSignalToPLC('Reset_Buzz');
   catchAndWriteDoubleSignalToPLC('T_On_Pump_Min', 'T_Off_Pump_Min');
   catchAndWriteDoubleSignalToPLC('T_On_Fan_Min', 'T_Off_Fan_Min');
 };
