@@ -79,27 +79,30 @@ export const initRealtime = conn_plc => {
     onValue(ref(realTimeDb, `XLNT_WEB`), async snapshot => {
       const data = snapshot.val();
       if (write_value !== null) {
-        const data1 = data[dataName1];
-        const data2 = data[dataName2];
+        if (data?.[dataName1] && data?.[dataName2]) {
+          const data1 = data[dataName1];
+          const data2 = data[dataName2];
 
-        if (
-          isEqual(write_value[dataName1], data1) &&
-          isEqual(write_value[dataName2], data2)
-        ) {
-          console.log(`===> ${dataName1} AND ${dataName2} NOT CHANGED`);
-        } else {
-          console.log(`===> ${dataName1} OR ${dataName2} CHANGED`);
-          console.log(
-            `-----------WRITE ${dataName1} AND ${dataName2} TO PLC-------------`
-          );
-          conn_plc.writeItems(
-            [dataName1, dataName2],
-            [data1, data2],
-            valuesWritten
-          );
+          if (
+            isEqual(write_value[dataName1], data1) &&
+            isEqual(write_value[dataName2], data2)
+          ) {
+            console.log(`===> ${dataName1} AND ${dataName2} NOT CHANGED`);
+          } else {
+            console.log(`===> ${dataName1} OR ${dataName2} CHANGED`);
+            console.log(
+              `-----------WRITE ${dataName1} AND ${dataName2} TO PLC-------------`
+            );
+            conn_plc.writeItems(
+              [dataName1, dataName2],
+              [data1, data2],
+              valuesWritten
+            );
+          }
+
+          write_value[dataName1] = data1;
+          write_value[dataName2] = data2;
         }
-        write_value[dataName1] = data1;
-        write_value[dataName2] = data2;
       }
     });
   };
