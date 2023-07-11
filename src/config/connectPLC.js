@@ -49,13 +49,6 @@ export const connectPLC = conn_plc => {
       return tags_list[tag];
     }); // Đưa giá trị đọc lên từ PLC và mảng
 
-    // conn_plc.addItems([
-    //   'tagBool',
-    //   'tagByte',
-    //   'tagInteger',
-    //   'tagReal',
-    //   'tagString',
-    // ]);
     conn_plc.addItems(tags_key);
   }
 };
